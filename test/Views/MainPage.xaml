@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:test.Views"
+       x:Class="test.Views.MainPage">
+
+    <!-- Define Flyout (if needed) -->
+        <!-- Home Page Tab -->
+        <ShellContent Title="Products" Icon="home_icon.png">
+            <views:HomePage />
+        </ShellContent>
+
+        <!-- Cart Page Tab -->
+        <ShellContent Title="Cart" Icon="cart_icon.jpg">
+            <views:CartPage />
+        </ShellContent>
+
+        <!-- Profile Page Tab -->
+        <ShellContent Title="Profile" Icon="profile_icon.png">
+            <views:ProfilePage />
+        </ShellContent>
+</Shell>

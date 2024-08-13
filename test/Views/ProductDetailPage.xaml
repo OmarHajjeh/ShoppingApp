@@ -1,0 +1,32 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="test.Views.ProductDetailPage">
+
+    <StackLayout Padding="10">
+        <CarouselView ItemsSource="{Binding Product.Images}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding .}" Aspect="AspectFit" HeightRequest="200" />
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+        <Label Text="{Binding Product.Title}" FontAttributes="Bold" FontSize="Large" />
+        <Label Text="{Binding Product.Brand}" FontAttributes="Italic" />
+        <Label Text="{Binding Product.Description}" />
+        <Label Text="{Binding Product.Price, StringFormat='{}{0:C}'}" TextColor="Green" />
+        
+        <Label Text="Reviews:" FontAttributes="Bold" Margin="0,10,0,0" />
+        <CollectionView ItemsSource="{Binding Product.Reviews}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="5">
+                        <Label Text="{Binding Date}" />
+                        <Label Text="{Binding ReviewerName}" />
+                        <Label Text="{Binding Rating, StringFormat='Rating: {0}'}" FontAttributes="Bold" />
+                        <Label Text="{Binding Comment}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

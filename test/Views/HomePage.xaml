@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:test.ViewModels"
+             xmlns:models="clr-namespace:test.Models"
+             x:Class="test.Views.HomePage"
+             x:DataType="viewmodels:HomeViewModel">
+
+    <ContentPage.BindingContext>
+        <viewmodels:HomeViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <StackLayout Padding="10">
+            <SearchBar Placeholder="Search by description" Text="{Binding SearchText}" />
+            <CollectionView ItemsSource="{Binding FilteredProducts}" SelectionMode="Single" SelectionChanged="OnProductSelected">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" Span="1" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Product">
+                        <Frame BorderColor="LightGray" Padding="10" Margin="5" CornerRadius="10">
+                            <Grid Padding="10" RowDefinitions="Auto, Auto, Auto" ColumnDefinitions="100, *">
+                                <Image Grid.RowSpan="3" Source="{Binding Thumbnail}" HeightRequest="100" WidthRequest="100" Aspect="AspectFit" />
+                                <Label Grid.Column="1" Text="{Binding Title}" FontAttributes="Bold" />
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Description}" />
+                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Price, StringFormat='{}{0:C}'}" />
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:HomeViewModel}}, Path=ProductSelectedCommand}"
+                                                      CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
