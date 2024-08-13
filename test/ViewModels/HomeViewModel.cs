@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using test.Services;
 using test.Views;
 
 namespace test.ViewModels
+
 {
     public class HomeViewModel : BindableObject
     {
@@ -48,23 +50,19 @@ namespace test.ViewModels
         public HomeViewModel()
         {
             _apiService = new ApiService();
-            ProductSelectedCommand = new Command<Product>(OnProductSelected);
             LoadProducts();
+            ProductSelectedCommand = new Command<Product>(OnProductSelected);
         }
 
         private async void LoadProducts()
         {
             try
             {
-                ObservableCollection<Product> products;
-   
-                products = new ObservableCollection<Product>(await _apiService.GetProductsAsync());                
-                _products = products;
-                FilteredProducts = new ObservableCollection<Product>(products);
+                _products = new ObservableCollection<Product>(await _apiService.GetProductsAsync());
+                FilteredProducts = new ObservableCollection<Product>(_products);
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it accordingly
                 Console.WriteLine($"Error loading products: {ex.Message}");
             }
         }
@@ -80,12 +78,11 @@ namespace test.ViewModels
                 else
                 {
                     FilteredProducts = new ObservableCollection<Product>(_products.Where(p =>
-                        p.Description?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true));
+                        p.Description?.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0));
                 }
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it accordingly
                 Console.WriteLine($"Error filtering products: {ex.Message}");
             }
         }
@@ -99,13 +96,11 @@ namespace test.ViewModels
 
                 if (Application.Current?.MainPage != null)
                 {
-                    // Navigate to the product detail page
                     await Application.Current.MainPage.Navigation.PushAsync(new ProductDetailPage(selectedProduct));
                 }
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it accordingly
                 Console.WriteLine($"Error selecting product: {ex.Message}");
             }
         }

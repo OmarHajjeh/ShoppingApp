@@ -14,6 +14,7 @@ namespace test.Models
         public decimal Price { get; set; }
         public string Thumbnail { get; set; }
         public string Brand { get; set; }
+        public int Quantity { get; set; }
 
         // JSON representation of the Images
         public string ImageUrlsJson { get; set; }

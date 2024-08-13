@@ -11,4 +11,5 @@ public partial class ProductDetailPage : ContentPage
         BindingContext = new ProductDetailViewModel(selectedProduct);
     }
 
+
 }

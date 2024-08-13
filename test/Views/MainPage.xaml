@@ -4,7 +4,6 @@
        xmlns:views="clr-namespace:test.Views"
        x:Class="test.Views.MainPage">
 
-    <!-- Define Flyout (if needed) -->
         <!-- Home Page Tab -->
         <ShellContent Title="Products" Icon="home_icon.png">
             <views:HomePage />

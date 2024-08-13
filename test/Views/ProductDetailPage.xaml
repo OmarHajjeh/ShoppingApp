@@ -1,6 +1,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="test.Views.ProductDetailPage">
+             x:Class="test.Views.ProductDetailPage"
+             Title="Product Details">
 
     <StackLayout Padding="10">
         <CarouselView ItemsSource="{Binding Product.Images}">
@@ -23,7 +24,7 @@
                         <Label Text="{Binding Date}" />
                         <Label Text="{Binding ReviewerName}" />
                         <Label Text="{Binding Rating, StringFormat='Rating: {0}'}" FontAttributes="Bold" />
-                        <Label Text="{Binding Comment}" />
+                        <Label Text="{Binding Comment,StringFormat='Comment: {0}'}" FontAttributes="Bold" />
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

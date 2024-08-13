@@ -14,12 +14,16 @@ namespace test.Models
         public string lastName { get; set; }
         public string email { get; set; }
         public string phone { get; set; }
-        public string city { get; set; }
-        public string state { get; set; }
-        public int zipcode { get; set; }
-        public string country { get; set; }
         public bool rememberMe { get; set; }
-          
+        public Address address { get; set; }
     }
 
+    class Address
+    {
+        public string street { get; set; }
+        public string zipcode { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public string country { get; set; }
+    }
 }
